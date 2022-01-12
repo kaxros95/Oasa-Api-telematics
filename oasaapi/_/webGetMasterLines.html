@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>webGetMasterLines &#8212; OASA Telematics API 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://assets.readthedocs.org/static/css/badge_only.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+  
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="webGetLangs" href="webGetLangs.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="webGetMasterLines.html" />
+
+<link rel="stylesheet" href="https://assets.readthedocs.org/static/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": false, "api_host": "https://readthedocs.org", "build_date": "2021-01-02T10:25:25Z", "builder": "sphinx", "canonical_url": "https://oasa-telematics-api.readthedocs.io/en/latest/", "commit": "2c02906f", "docroot": "/docs/source/", "features": {"docsearch_disabled": false}, "global_analytics_code": "UA-17997319-1", "language": "en", "page": "webGetMasterLines", "programming_language": "py", "project": "oasa-telematics-api", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "alabaster", "user_analytics_code": "", "version": "latest"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+<script type="text/javascript" src="https://assets.readthedocs.org/static/javascript/readthedocs-analytics.js" async="async"></script>
+
+<!-- end RTD <extrahead> -->
+</head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="webgetmasterlines">
+<h1>webGetMasterLines<a class="headerlink" href="#webgetmasterlines" title="Permalink to this headline">¶</a></h1>
+<p>Επιστρέφει τα στοιχεία σχετικά με όλες τα master lines.</p>
+<p>Ως Masterlines, η τηλεματική ορίζει όλες τις πρωταρχικές γραμμές. Για παράδειγμα μπορείτε να δείτε <a class="reference external" href="http://oasth.gr/#el/masterinfo/list/17/1/">εδώ</a> .
+Πρωταρχική γραμμή θεωρείται η γραμμή 84, η οποία έχει ως παιδιά τις γραμμές 84Α και 84Β.
+Ο ΟΑΣΑ, δεν χρησιμοποιεί τις masterlines γιατί δεν έχει βασίσει το σύστημα των γραμμών του σε πρωταρχικές γραμμές</p>
+<div class="section" id="api-endpoint">
+<h2>Api Endpoint<a class="headerlink" href="#api-endpoint" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">http://telematics.oasa.gr/api/?act=webGetMasterLines</span></code></p>
+</div>
+<div class="section" id="response">
+<h2>Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="p">{</span>
+<span class="s2">&quot;ml_code&quot;</span><span class="p">:</span><span class="s2">&quot;9&quot;</span><span class="p">,</span>
+<span class="s2">&quot;ml_descr&quot;</span><span class="p">:</span><span class="s2">&quot;</span><span class="se">\u039a\u0391\u039d\u0399\u0393\u0393\u039f\u03a3</span><span class="s2"> - </span><span class="se">\u0393\u039a\u03a5\u0396\u0397</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="s2">&quot;ml_descr_eng&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span>
+<span class="s2">&quot;ml_id&quot;</span><span class="p">:</span><span class="s2">&quot;021&quot;</span><span class="p">,</span>
+<span class="s2">&quot;sdc_code&quot;</span><span class="p">:</span><span class="s2">&quot;54&quot;</span><span class="p">,</span>
+<span class="s2">&quot;line_code&quot;</span><span class="p">:</span><span class="s2">&quot;1151&quot;</span><span class="p">,</span>
+<span class="s2">&quot;is_complex&quot;</span><span class="p">:</span><span class="s2">&quot;2&quot;</span>
+<span class="p">}</span>
+<span class="o">....</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="response-breakdown">
+<h2>Response Breakdown<a class="headerlink" href="#response-breakdown" title="Permalink to this headline">¶</a></h2>
+<p><em>ml_id</em>: Από ότι φαίνεται είναι λογικά το νούμερο της γραμμής.</p>
+<p><em>ml_code</em>: Identifier που έχει να κάνει με την περιοχή έναρξης. (Help needed)
+Πιθανότατα το ml αντιστοιχεί στο MasterLine.</p>
+<p><em>sdc_code</em>: Identifier για το ωράριο που ακολουθεί η γραμμή, δες getSchedLines και getScheduleDaysMasterLine</p>
+<p><em>line_code</em>: Το Line_Code είναι ο μοναδικός αριθμός που ορίζει το software της τηλεματικής στην κάθε γραμμή.
+Βάσει αυτού του αριθμού γίνονται όλοι συσχετισμοί στην βάση δεδομένων του ΟΑΣΑ. Επίσης φαίνεται να είναι URI.</p>
+<p><em>ml_descr</em>: Unicode formatted string, με τον τίτλο της γραμμής, ‘ΠΛΑΤΕΙΑ ΚΑΝΙΓΓΟΣ - ΓΚΥΖH(ΚΥΚΛΙΚΗ)’</p>
+<p><em>ml_descr_eng</em>: πάντα null λογικά δεν έχει υλοποιηθεί ακόμα αλλά λογικά θα επιστρέφει στο μέλλον το <em>ml_descr</em> με ascii χαρακτήρες.</p>
+<p><em>is_complex</em> : δεν γνωρίζω τι αντιπροσωπεύει</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Menu navigation</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getStopArrivals.html">getStopArrivals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getBusLocation.html">getBusLocation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getDailySchedule.html">getDailySchedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getEsavlDirections.html">getEsavlDirections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getScheduleDaysMasterline.html">getScheduleDaysMasterline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getLinesAndRoutesForMl.html">getLinesAndRoutesForMl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getRoutesForLine.html">getRoutesForLine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getMLName.html">getMLName</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getLineName.html">getLineName</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getLinesAndRoutesForMlandLCode.html">getLinesAndRoutesForMlandLCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getPlaces.html">getPlaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getPlacesTypes.html">getPlacesTypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getRouteName.html">getRouteName</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getStopNameAndXY.html">getStopNameAndXY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getSchedLines.html">getSchedLines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getClosestStops.html">getClosestStops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webGetLines.html">webGetLines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webGetLinesWithMLInfo.html">webGetLinesWithMLInfo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webGetRoutes.html">webGetRoutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webGetStops.html">webGetStops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webRouteDetails.html">webRouteDetails</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webRoutesForStop.html">webRoutesForStop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webGetRoutesDetailsAndStops.html">webGetRoutesDetailsAndStops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webGetLangs.html">webGetLangs</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">webGetMasterLines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#response">Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#response-breakdown">Response Breakdown</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="webGetLangs.html" title="previous chapter">webGetLangs</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="https://oasa-telematics-api.readthedocs.io/en/latest/_sources/webGetMasterLines.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021.
+      
+      <!-- |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="https://oasa-telematics-api.readthedocs.io/en/latest/_sources/webGetMasterLines.rst.txt"
+          rel="nofollow">Page source</a> -->
+    </div>
+
+    
+
+    
+  </body>
+</html>

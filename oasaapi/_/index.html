@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Welcome to OASA Telematics API’s documentation! &#8212; OASA Telematics API 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://assets.readthedocs.org/static/css/badge_only.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="getStopArrivals" href="getStopArrivals.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="index.html" />
+
+<link rel="stylesheet" href="https://assets.readthedocs.org/static/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": false, "api_host": "https://readthedocs.org", "build_date": "2021-01-02T10:25:24Z", "builder": "sphinx", "canonical_url": "index.html", "commit": "2c02906f", "docroot": "/docs/source/", "features": {"docsearch_disabled": false}, "global_analytics_code": "UA-17997319-1", "language": "en", "page": "index", "programming_language": "py", "project": "oasa-telematics-api", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "alabaster", "user_analytics_code": "", "version": "latest"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+<script type="text/javascript" src="https://assets.readthedocs.org/static/javascript/readthedocs-analytics.js" async="async"></script>
+
+<!-- end RTD <extrahead> -->
+</head>
+<body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-oasa-telematics-api-s-documentation">
+<h1>Welcome to OASA Telematics API’s documentation!<a class="headerlink" href="#welcome-to-oasa-telematics-api-s-documentation" title="Permalink to this headline">¶</a></h1>
+<dl class="simple">
+<dt>The api has the following form :</dt><dd><p><a class="reference external" href="http://telematics.oasa.gr/api/?act=action&amp;p1=parameter1&amp;p2=parameter2">http://telematics.oasa.gr/api/?act=action&amp;p1=parameter1&amp;p2=parameter2</a></p>
+</dd>
+</dl>
+<p>Μέσα από το <a class="reference external" href="http://telematics.oasa.gr/js/script.js">script</a> (Script v0.1.1) το οποίο χρησιμοποιούν στο <a class="reference external" href="http://telematics.oasa.gr/">http://telematics.oasa.gr/</a>
+τα requests που έχω τεκμηριώσει ως τώρα είναι <strong>POST</strong> requests τα οποία περνάνε
+τις παραμέτρους στο url .</p>
+<p><strong>Code example:</strong></p>
+<p>Χρήση του API μέσω python requests. Το μόνο που αλλάζει είναι το endpoint.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;http://telematics.oasa.gr/api/?act=getLinesAndRoutesForMl&amp;p1=9&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">json_response</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">json_response</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;line_descr&quot;</span><span class="p">])</span>
+<span class="go">&#39;ΠΛΑΤΕΙΑ ΚΑΝΙΓΓΟΣ - ΓΚΥΖH&#39;</span>
+</pre></div>
+</div>
+<p><strong>Code example: BASH</strong></p>
+<p>Το ίδιο request με BASH. Πρέπει να είναι εγκατεστημένα το <strong>curl</strong> και το <strong>jq</strong>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -s <span class="s2">&quot;telematics.oasa.gr/api/?act=getLinesAndRoutesForMl&amp;p1=9&quot;</span> <span class="p">|</span> jq <span class="s1">&#39;.[].line_descr&#39;</span>
+<span class="s2">&quot;ΠΛΑΤΕΙΑ ΚΑΝΙΓΓΟΣ - ΓΚΥΖH(ΚΥΚΛΙΚΗ)&quot;</span>
+</pre></div>
+</div>
+<p><strong>Code example: PowerShell</strong></p>
+<p>Και με powershell με χρήση της Invoke-RestMethod.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>PS C:<span class="se">\&gt;</span> <span class="o">(</span>Invoke-RestMethod <span class="s2">&quot;http://telematics.oasa.gr/api/?act=getLinesAndRoutesForMl&amp;p1=9&quot;</span><span class="o">)</span>.line_descr
+ΠΛΑΤΕΙΑ ΚΑΝΙΓΓΟΣ - ΓΚΥΖH<span class="o">(</span>ΚΥΚΛΙΚΗ<span class="o">)</span>
+</pre></div>
+</div>
+<p><strong>Not Implemented yet</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="getEsavlDirections.html"><span class="doc">getEsavlDirections</span></a></p></li>
+<li><p><a class="reference internal" href="getLinesAndRoutesForMlandLCode.html"><span class="doc">getLinesAndRoutesForMlandLCode</span></a></p></li>
+<li><p><a class="reference internal" href="getPlaces.html"><span class="doc">getPlaces</span></a></p></li>
+<li><p><a class="reference internal" href="getPlacesTypes.html"><span class="doc">getPlacesTypes</span></a></p></li>
+</ul>
+<!-- <div class="section" id="actions">
+<h2>Actions<a class="headerlink" href="#actions" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getStopArrivals.html">getStopArrivals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getStopArrivals.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getStopArrivals.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getBusLocation.html">getBusLocation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getBusLocation.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getBusLocation.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getDailySchedule.html">getDailySchedule</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getDailySchedule.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getDailySchedule.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getEsavlDirections.html">getEsavlDirections</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getEsavlDirections.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getEsavlDirections.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getScheduleDaysMasterline.html">getScheduleDaysMasterline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getScheduleDaysMasterline.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getScheduleDaysMasterline.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getLinesAndRoutesForMl.html">getLinesAndRoutesForMl</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getLinesAndRoutesForMl.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getLinesAndRoutesForMl.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getRoutesForLine.html">getRoutesForLine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getRoutesForLine.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getRoutesForLine.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getMLName.html">getMLName</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getMLName.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getMLName.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getLineName.html">getLineName</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getLineName.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getLineName.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getLinesAndRoutesForMl.html">getLinesAndRoutesForMl</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getLinesAndRoutesForMl.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getLinesAndRoutesForMl.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getLinesAndRoutesForMlandLCode.html">getLinesAndRoutesForMlandLCode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getLinesAndRoutesForMlandLCode.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getLinesAndRoutesForMlandLCode.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getPlaces.html">getPlaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getPlaces.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getPlaces.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getPlacesTypes.html">getPlacesTypes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getPlacesTypes.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getPlacesTypes.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getRouteName.html">getRouteName</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getRouteName.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getRouteName.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getStopNameAndXY.html">getStopNameAndXY</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getStopNameAndXY.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getStopNameAndXY.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getSchedLines.html">getSchedLines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getSchedLines.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getSchedLines.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getClosestStops.html">getClosestStops</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getClosestStops.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getClosestStops.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="webGetLines.html">webGetLines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="webGetLines.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webGetLines.html#response">Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webGetLines.html#response-breakdown">Response Breakdown</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="webGetLinesWithMLInfo.html">webGetLinesWithMLInfo</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="webGetLinesWithMLInfo.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webGetLinesWithMLInfo.html#response">Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webGetLinesWithMLInfo.html#response-breakdown">Response Breakdown</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="webGetRoutes.html">webGetRoutes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="webGetRoutes.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webGetRoutes.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="webGetStops.html">webGetStops</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="webGetStops.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webGetStops.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="webRouteDetails.html">webRouteDetails</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="webRouteDetails.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webRouteDetails.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="webRoutesForStop.html">webRoutesForStop</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="webRoutesForStop.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webRoutesForStop.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="webGetRoutesDetailsAndStops.html">webGetRoutesDetailsAndStops</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="webGetRoutesDetailsAndStops.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webGetRoutesDetailsAndStops.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="webGetLangs.html">webGetLangs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="webGetLangs.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webGetLangs.html#response">Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webGetLangs.html#response-breakdown">Response Breakdown</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="webGetMasterLines.html">webGetMasterLines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="webGetMasterLines.html#api-endpoint">Api Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webGetMasterLines.html#response">Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webGetMasterLines.html#response-breakdown">Response Breakdown</a></li>
+</ul>
+</li>
+</ul>
+</div> 
+</div>-->
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="#">Menu navigation</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getStopArrivals.html">getStopArrivals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getBusLocation.html">getBusLocation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getDailySchedule.html">getDailySchedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getEsavlDirections.html">getEsavlDirections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getScheduleDaysMasterline.html">getScheduleDaysMasterline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getLinesAndRoutesForMl.html">getLinesAndRoutesForMl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getRoutesForLine.html">getRoutesForLine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getMLName.html">getMLName</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getLineName.html">getLineName</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getLinesAndRoutesForMlandLCode.html">getLinesAndRoutesForMlandLCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getPlaces.html">getPlaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getPlacesTypes.html">getPlacesTypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getRouteName.html">getRouteName</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getStopNameAndXY.html">getStopNameAndXY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getSchedLines.html">getSchedLines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getClosestStops.html">getClosestStops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webGetLines.html">webGetLines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webGetLinesWithMLInfo.html">webGetLinesWithMLInfo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webGetRoutes.html">webGetRoutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webGetStops.html">webGetStops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webRouteDetails.html">webRouteDetails</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webRoutesForStop.html">webRoutesForStop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webGetRoutesDetailsAndStops.html">webGetRoutesDetailsAndStops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webGetLangs.html">webGetLangs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webGetMasterLines.html">webGetMasterLines</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="getStopArrivals.html" title="next chapter">getStopArrivals</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="https://oasa-telematics-api.readthedocs.io/en/latest/_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021.
+<!--       
+      |
+      Powered by <a href="https://www.crowdpolicy.com/el/">Crowdpolicy</a>
+      
+      |
+      <a href="https://oasa-telematics-api.readthedocs.io/en/latest/_sources/index.rst.txt"
+          rel="nofollow">Page source</a> -->
+    </div>
+
+    
+
+    
+  </body>
+</html>
